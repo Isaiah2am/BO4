@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/5656649fa8.js" crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+<a href="../index.html" class="back-link" id="homebutton">Back</a>
+<div class="sort-section">
+    <label for="sort-products">Sort by:</label>
+    <select id="sort-products">
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A-Z</option>
+        <option value="name-desc">Name: Z-A</option>
+    </select>
+    <input type="text" id="search-bar" class="searchbar" placeholder="Search products..." />
+
+</div>
+
+<nav class="shoppingcart_section">
+
+    <ul class="shoppingcart__ul">
+        <li id="items__li"><p>0</p></li>
+        <li class="shoppingcart__li" id="cartIconLi" style="cursor:pointer;">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </li>
+        <li class="shoppingcart__li dropdown">
+            <div id="cartDropdownMenu" class="dropdown-content" style="display: none;">
+                <p>Your cart is empty.</p>
+            </div>
+        </li>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menu = document.getElementById('cartDropdownMenu');
+            const cartIconLi = document.getElementById('cartIconLi');
+            function toggleCartDropdown(e) {
+                e.stopPropagation();
+                const isOpen = menu.style.display === 'block';
+                menu.style.display = isOpen ? 'none' : 'block';
+            }
+            cartIconLi.addEventListener('click', toggleCartDropdown);
+            document.addEventListener('click', function() {
+                menu.style.display = 'none';
+            });
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+        </script>
+        <style>
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: #fff;
+            min-width: 200px;
+            border: 1px solid #ccc;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1em;
+        }
+        </style>
+    </ul>
+    
+</nav>
+
+
+
+<main  class="product">
+    
+    
+    <div id="section__items"></div>
+
+    </section>
+
+</main>
+</body>
+
+</html>

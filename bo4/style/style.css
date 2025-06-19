@@ -1,0 +1,188 @@
+*, *::before, *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+    }
+    
+    html, body {
+     min-height: 100vh;
+    }
+    html {
+     font-size: 62.5%; /* font is 10px */
+     scroll-behavior: smooth;
+    }
+    
+    img{
+     max-width: 100%;
+     height: auto;
+    }
+
+
+    body{
+        background: rgb(236, 236, 236);
+    }
+
+    .dark-mode, 
+    .dark-mode *:not(button) {
+        background-color: black !important;
+        color: white !important;
+    }
+    .dark-mode button {
+        background-color: #333 !important;
+        color: white !important;
+    }
+
+    .section__nav {
+        border: 3px solid gainsboro;
+        background: white;
+        width: 85vw;
+        height: 7rem;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+    }
+    .section__nav__home {
+        background: rgb(236, 236, 236);
+        margin: 1rem;
+        width: 8rem;
+        height: 5rem;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section__nav__menu {
+        margin-left: auto;
+        padding: 1rem;
+    }
+    .section__nav__menuul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        gap: 2rem;
+        font-size: 1.5rem;
+        font-family: sans-serif;
+        text-decoration: none;
+        color: black;    
+    }
+.text-link{
+    text-decoration: none;
+    color: inherit;
+}
+.text-link:hover {
+    background-color: #e0e0e0;
+}
+    .section__webshoplogo {
+        font-size: 2rem;
+        font-family: sans-serif;
+        width: 80vw;
+        height: 7rem;
+        margin: 0 auto;
+        margin-right: 7rem;
+        margin-top: 15rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .section__webshoptext {
+        font-size: larger;
+    }
+
+    #section__webbutton{
+        background: lightgray;
+        width: 20vw;
+        height: 6rem;
+        border-radius: 15px;
+        display: block;
+        border-style: none;
+        cursor: pointer;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    #section__webbutton:hover {
+        cursor: pointer;
+        background-color: darkgray;
+        font-size: 2.9rem;
+    }
+
+  .section__webshop{
+    background: white;
+        width: 80vw;
+        height: 80rem;
+        margin: 0 auto;
+        margin-top: 10rem;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 3rem;
+        
+  }
+
+.section__webshop__img{
+    height: 35rem;
+    width: 35rem;
+    min-width: 35rem;
+    max-width: 35rem;
+    min-height: 35rem;
+    max-height: 35rem;
+    background-color: gray;
+    flex: 0 0 35rem;
+}
+
+.section__webshop__txt1{
+    width: 45rem;
+    height: 10rem;
+    margin-left:3rem ;
+}
+.section__webshop__txt1 > h2 {
+    font-size: 5rem;
+    font-family: sans-serif;
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+
+.section__webshop__txt1 > p{
+    font-size: 2rem;
+    font-family: sans-serif;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+#section__webshop__button{
+    background: lightgray;
+        width: 30rem;
+        height: 8rem;
+        border-radius: 15px;
+        display: block  ;
+        margin-top: 4rem;
+    margin-left: 2rem;
+    border-style: none;
+    background: lightgray;
+        width: 20vw;
+        height: 6rem;
+        border-radius: 15px;
+        display: block;
+        border-style: none;
+        cursor: pointer;
+        font-size: 3rem;
+        font-weight: bold;
+}
+#section__webshop__button:hover {
+    cursor: pointer;
+}
+.section__webshop__imgs{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop 4 Blox | Betaalbare Minecraft Blokken</title>
+  <meta name="description" content="Koop unieke en betaalbare Minecraft-blokken bij Shop 4 Blox. Direct beschikbaar, snel geleverd. Ontdek ons assortiment!">
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="js/main.js" defer></script>
+    
+</head>
+<body>
+
+    <button onclick="myFunction()">🌙</button>
+    
+    <section class="section__nav">
+
+        <section class="section__nav__home">
+            <img src="shop4blox.jpg" alt="Shop 4 Blox Logo" width="100" height="100">
+
+        </section>
+
+        <section class="section__nav__menu">
+            <ul class="section__nav__menuul">
+                <li id="top">Home</a></li>
+                <li>About</li>
+                <li><a href="products/products.html" class="text-link">Products</a></li>
+            </ul>   
+
+        </section>
+
+    </section>
+
+    <section class="section__webshoplogo">
+         
+        <section class="section__webshoptext">
+         
+        <h2>Shop 4 blox</h2>
+        <button id="section__webbutton" onclick="window.location.href='products/products.html'">Products</button>
+        
+    </section>
+
+    </section>
+
+    <section class="section__webshop">
+
+        <section class="section__webshop__img">
+            <img src="imgs/gras.webp" alt="Placeholder Image" width="560rem" height="560rem">
+
+        </section>
+
+        <section class="section__webshop__txt1">
+        <h2>Dangerous Deals</h2>
+            <p>GOEDKOPE BLOKKEN VOOR MINECRAFT BOWERS</p>
+
+            <button id="section__webshop__button" onclick="window.location.href='products/products.html'">BUY NOW</button>
+            
+
+           
+        
+        </section>
+
+
+        <section class="section__webshop__imgs" style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin: 2rem 0; min-height: 100vh;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                <img src="imgs/cry.webp" alt="Placeholder Image" width="350rem" height="350rem" onclick="openModal('imgs/cry.webp')" style="cursor:pointer;">
+                <img src="imgs/dias.webp" alt="Placeholder Image" width="350rem" height="350rem" onclick="openModal('imgs/dias.webp')" style="cursor:pointer;">
+                <img src="imgs/gras.webp" alt="Placeholder Image" width="350rem" height="350rem" onclick="openModal('imgs/gras.webp')" style="cursor:pointer;">
+            </div>
+        </section>
+
+       
+        </section>
+        <div id="imgModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
+            <span onclick="closeModal()" style="position:absolute;top:20px;right:40px;font-size:40px;color:white;cursor:pointer;">&times;</span>
+            <img id="modalImg" src="" alt="Vergrote afbeelding" style="max-width:90vw; max-height:90vh; display:block; margin:auto;">
+        </div>
+        <script>
+            function openModal(src) {
+            document.getElementById('imgModal').style.display = 'flex';
+            document.getElementById('modalImg').src = src;
+            }
+            function closeModal() {
+            document.getElementById('imgModal').style.display = 'none';
+            document.getElementById('modalImg').src = '';
+            }
+         
+            document.getElementById('imgModal').onclick = function(e) {
+            if (e.target === this) closeModal();
+            }
+        </script>
+        <section class="section__webshop__teksten2">
+            
+
+
+        </section>
+       
+
+
+   
+            
+
+    
+
+
+    </section>
+
+</body>
+</html>
