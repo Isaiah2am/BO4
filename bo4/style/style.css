@@ -186,3 +186,11 @@
     margin-right: auto;
 }
 
+footer{
+    background-color:gray; 
+    color: #fff; 
+    padding: 2rem 1rem; 
+    text-align: center;margin: 2rem;
+    max-width: 80vw; 
+    margin: 0 auto;
+}
