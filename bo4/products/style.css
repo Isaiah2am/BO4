@@ -152,7 +152,7 @@ main{
     opacity: 0;
 }
 .back-link{
-    margin: 2rem;
+    margin: 1rem;
     font-size: 3rem;
     text-decoration: none;
     font-family: sans-serif;
@@ -163,12 +163,25 @@ main{
     background-color: lightgray;
 }
 
+.sort-section{
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
 #sort-products {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
+    margin: 1rem;
 }   
+
+
+#search-bar{
+    margin: 1rem;
+    width: 13rem;
+    height: 2rem;
+}
 
 @media screen and (max-width: 600px) {
     .product{
