@@ -26,7 +26,6 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Intersection Observer Example
 let observer = new IntersectionObserver(
   function(entries) {
     if (entries[0].isIntersecting === true) {
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
     list.forEach(product => {
       const div = document.createElement('div');
       div.className = 'product-item';
-      // Use product.link if available, otherwise default to "#"
       const productLink = product.link || "#";
       div.innerHTML = `
         <section class="product1__section" style="position: relative;">
@@ -98,139 +96,114 @@ document.addEventListener('DOMContentLoaded', function() {
     sortProducts(this.value);
   });
 
-  // Initial render
   renderProducts(products);
 });
 
+const cartItems = {};
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchBar = document.getElementById('search-bar');
-        const sectionItems = document.getElementById('section__items');
+document.addEventListener('DOMContentLoaded', function() {
+  const searchBar = document.getElementById('search-bar');
+  const sectionItems = document.getElementById('section__items');
 
-        // Helper: get all products (assumes products are rendered as direct children)
-        function getProductElements() {
-            return Array.from(sectionItems.children);
-        }
+  function getProductElements() {
+    return Array.from(sectionItems.children);
+  }
 
-        searchBar.addEventListener('input', function() {
-            const query = searchBar.value.trim().toLowerCase();
-            getProductElements().forEach(product => {
-                const text = product.textContent.toLowerCase();
-                product.style.display = text.includes(query) ? '' : 'none';
-            });
-        });
+  searchBar.addEventListener('input', function() {
+    const query = searchBar.value.trim().toLowerCase();
+    getProductElements().forEach(product => {
+      const text = product.textContent.toLowerCase();
+      product.style.display = text.includes(query) ? '' : 'none';
     });
-
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('product__button')) {
-        const name = e.target.getAttribute('data-product');
-        console.log(`Add to cart pressed for: ${name}`);
-      }
-      if (e.target.classList.contains('product__removebutton')) {
-        const name = e.target.getAttribute('data-product');
-        console.log(`Remove from cart pressed for: ${name}`);
-      }
-      if (e.target.classList.contains('product__plusbutton')) {
-        const name = e.target.getAttribute('data-product');
-        console.log(`Plus button pressed for: ${name}`);
-      }
-    });
-
-
-    function createItemDetailsTemplate(product) {
-      const template = document.createElement('template');
-      template.innerHTML = `
-        <div class="shopitem item-details">
-          <strong>${product.name}</strong><br>
-          <small>Description of ${product.name}</small>
-          <input class="item-qty" type="number" value="1" min="1">
-          <div class="item-price">$${product.price.toFixed(2)}</div>
-        </div>
-      `;
-      return template;
-    }
-
-    // Register as a custom element <schoppingitem>
-    class SchoppingItem extends HTMLElement {
-      constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-      }
-
-      set product(product) {
-        const template = createItemDetailsTemplate(product);
-        this.shadowRoot.innerHTML = '';
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
-      }
-    }
-    customElements.define('schoppingitem', SchoppingItem);
-    let cartItems = [];
-
-    function addToCart(productName) {
-      const product = products.find(p => p.name === productName);
-      if (!product) return;
-      const existing = cartItems.find(item => item.name === productName);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cartItems.push({ ...product, qty: 1 });
-      }
-      renderCart();
-    }
-
-    function removeFromCart(productName) {
-      const idx = cartItems.findIndex(item => item.name === productName);
-      if (idx !== -1) {
-        if (cartItems[idx].qty > 1) {
-          cartItems[idx].qty -= 1;
-        } else {
-          cartItems.splice(idx, 1);
-        }
-        renderCart();
-      }
-    }
-
-    function renderCart() {
-      const cartSection = document.getElementById('cart__items');
-      if (!cartSection) return;
-      cartSection.innerHTML = '';
-      cartItems.forEach(item => {
-        const el = document.createElement('schoppingitem');
-        el.product = { ...item, price: item.price * item.qty };
-        el.setAttribute('data-product', item.name);
-        cartSection.appendChild(el);
-      });
-      cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
-      updateCartDisplay();
-    }
-
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('product__button')) {
-        const name = e.target.getAttribute('data-product');
-        addToCart(name);
-      }
-      if (e.target.classList.contains('product__removebutton')) {
-        const name = e.target.getAttribute('data-product');
-        removeFromCart(name);
-      }
-    });
-
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const menu = document.getElementById('cartDropdownMenu');
-    const cartIconLi = document.getElementById('cartIconLi');
-    if (menu && cartIconLi) {
-      function toggleCartDropdown(e) {
-        e.stopPropagation();
-        const isOpen = menu.style.display === 'block';
-        menu.style.display = isOpen ? 'none' : 'block';
-      }
-      cartIconLi.addEventListener('click', toggleCartDropdown);
-      document.addEventListener('click', function() {
-        menu.style.display = 'none';
-      });
-      menu.addEventListener('click', function(e) {
-        e.stopPropagation();
-      });
-    }
   });
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('product__button')) {
+    const name = e.target.getAttribute('data-product');
+    cartItems[name] = (cartItems[name] || 0) + 1;
+  }
+  if (e.target.classList.contains('product__removebutton')) {
+    const name = e.target.getAttribute('data-product');
+    if (cartItems[name]) {
+      cartItems[name]--;
+      if (cartItems[name] === 0) delete cartItems[name];
+    }
+  }
+  if (e.target.classList.contains('product__plusbutton')) {
+    const name = e.target.getAttribute('data-product');
+    cartItems[name] = (cartItems[name] || 0) + 1;
+  }
+});
+
+function getCartDropdownContent() {
+  const entries = Object.entries(cartItems);
+  if (entries.length === 0) return 'Cart is empty';
+  let total = 0;
+  const lines = entries.map(([name, qty]) => {
+    const product = products.find(p => p.name === name);
+    const price = product ? product.price : 0;
+    total += price * qty;
+    return `${name}: ${qty} × $${price} = $${(price * qty).toFixed(2)}`;
+  });
+  lines.push(`<hr style="margin: 8px 0;">`);
+  lines.push(`<strong>Total: $${total.toFixed(2)}</strong>`);
+  return lines.join('<br>');
+}
+
+document.addEventListener('click', function(e) {
+  const nav = e.target.closest('nav.shoppingcart_section');
+  if (nav) {
+    let dropdown = document.querySelector('.cart-dropdown');
+    if (dropdown) {
+      dropdown.remove();
+    } else {
+      dropdown = document.createElement('div');
+      dropdown.className = 'cart-dropdown';
+      dropdown.innerHTML = getCartDropdownContent();
+      const rect = nav.getBoundingClientRect();
+      dropdown.style.position = 'absolute';
+      dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+      dropdown.style.left = `${rect.left + window.scrollX - 200}px`;
+      document.body.appendChild(dropdown);
+      function handleOutsideClick(ev) {
+        if (!dropdown.contains(ev.target) && !nav.contains(ev.target)) {
+          dropdown.remove();
+          document.removeEventListener('mousedown', handleOutsideClick);
+        }
+      }
+      document.addEventListener('mousedown', handleOutsideClick);
+    }
+  } else {
+    const dropdown = document.querySelector('.cart-dropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+      dropdown.remove();
+    }
+  }
+});
+
+function createItemDetailsTemplate(product) {
+  const template = document.createElement('template');
+  template.innerHTML = `
+    <div class="shopitem item-details">
+      <strong>${product.name}</strong><br>
+      <small>Description of ${product.name}</small>
+      <input class="item-qty" type="number" value="1" min="1">
+      <div class="item-price">$${product.price.toFixed(2)}</div>
+    </div>
+  `;
+  return template;
+}
+
+class ShoppingItem extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  set product(product) {
+    const template = createItemDetailsTemplate(product);
+    this.shadowRoot.innerHTML = '';
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+}

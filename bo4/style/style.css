@@ -8,7 +8,7 @@
      min-height: 100vh;
     }
     html {
-     font-size: 62.5%; /* font is 10px */
+     font-size: 62.5%;
      scroll-behavior: smooth;
     }
     
